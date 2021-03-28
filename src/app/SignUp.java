@@ -1,5 +1,6 @@
 package app;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -47,7 +48,7 @@ public class SignUp extends GridPane {
 		pane.setPadding(new Insets(20));
 		pane.setHgap(10);
 		pane.setVgap(10);
-		pane.setStyle("-fx-background-image: url(\"https://i.imgur.com/OGQJDqs.png\");");
+		pane.setStyle("-fx-background-color: #D5D4D4");
 
 		Button backBtn = new Button();
 		backBtn = Language.getButton("Button6");
@@ -146,7 +147,7 @@ public class SignUp extends GridPane {
 		try 
 		{
 			String hash = BCrypt.hashpw(password, BCrypt.gensalt());
-			String query = "INSERT INTO users(firstName, lastName, email, hash) VALUES(?, ?, ?, ?)";
+			String query = "INSERT INTO users(firstName, lastName, email, hash, date_created) VALUES(?, ?, ?, ?, CURDATE())";
 			PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, firstName);
 			preparedStatement.setString(2, lastName);
@@ -156,14 +157,6 @@ public class SignUp extends GridPane {
 			if (preparedStatement.executeUpdate() > 0) {
 				ResultSet rs = preparedStatement.getGeneratedKeys();
 				rs.next();
-//			    String query2 = "INSERT INTO player_statistics(userId) VALUES(?)";
-//			    PreparedStatement preparedStatement2 = DBConnection.getConnection().prepareStatement(query2);
-//			    preparedStatement2.setInt(1, rs.getInt(1));
-//			    if (preparedStatement2.executeUpdate() > 0) {
-//			    	return true;
-//			    } else {
-//			    	return false;
-//			    }
 			}
 			return false;
 		}

@@ -21,5 +21,31 @@ public class DBConnection {
 		}
 		return dbConnection;
 	}
+	public static ResultSet executeQuery(String queryToExecute)
+    {
+        ResultSet resultSet;
+        try
+        {
+        	PreparedStatement statement = dbConnection.prepareStatement(queryToExecute);
+            resultSet = statement.executeQuery(queryToExecute);
+            return resultSet;
+        } catch(SQLException e)
+        {
+            System.out.println("Unable to execute query");
+            e.printStackTrace();
+            return null;
+        }
+    }
+	public static void executeStatement(String statementToExecute)
+    {
+        try
+        {
+            PreparedStatement statement = dbConnection.prepareStatement(statementToExecute);
+            statement.execute();
+        } catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 }

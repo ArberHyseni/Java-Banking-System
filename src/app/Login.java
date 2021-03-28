@@ -12,8 +12,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -73,6 +76,7 @@ public class Login extends GridPane {
 									logInAction();});
 		pane.add(logInBtn, 1, 3);
 		GridPane.setHalignment(logInBtn, HPos.RIGHT);
+		pane.setStyle("-fx-background-color: #D5D4D4");
 		return pane;
 	}
 	public void cleanForm() {
@@ -108,7 +112,7 @@ public class Login extends GridPane {
 			if(resultSet.next()) 
 			{
 				if (BCrypt.checkpw(passwordTxt.getText(), resultSet.getString("hash"))) {
-					Session.setSession(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3));
+					Session.setSession(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getDouble(6));
 					Game game = new Game();
 					gameScene = new Scene(game.mainPane(), 600, 400);
 					(Main.window).setScene(gameScene);

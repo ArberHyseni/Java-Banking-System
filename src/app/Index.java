@@ -51,11 +51,15 @@ public class Index extends VBox {
 		//onclick action
 		login.setOnAction(e -> {
 			(Main.window).setScene(logInScene);
+			(Main.window).setMinWidth(600);
+			(Main.window).setMinHeight(400);
 			(Main.window).setTitle(Language.getLabel("Button3").getText());
         });
         //onclick action
 		signup.setOnAction(e -> {
 			(Main.window).setScene(signInScene);
+			(Main.window).setMinWidth(600);
+			(Main.window).setMinHeight(400);
 			(Main.window).setTitle(Language.getLabel("Button4").getText());
         });
 		HBox languageButtons = new HBox(13);
