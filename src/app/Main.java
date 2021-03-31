@@ -6,7 +6,6 @@ import javafx.stage.Stage;
 import utils.DBConnection;
 import utils.Language;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 
 public class Main extends Application {
 	public static Stage window;
@@ -24,14 +23,10 @@ public class Main extends Application {
 			Platform.exit();
 			System.exit(0);
 		});
-		
-		//main part
 		Index index = new Index();
-		indexScene = new Scene(index.getIndex(), 600, 400);
+		indexScene = new Scene(index.getIndex(), 400, 400);
 		window.setTitle(Language.getLabel("label8").getText());
 		window.setScene(indexScene);
-		window.getIcons().add(new Image(
-			      Main.class.getResourceAsStream("bank.jpg")));
 		window.show();
 	}
 }
