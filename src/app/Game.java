@@ -151,6 +151,7 @@ public class Game extends BorderPane
 		
 		menupane.setHgap(10);
 		menupane.setVgap(10);
+		//use methods of borderpane
 		gp.setTop(tophb);
 		gp.setCenter(menupane);
 		gp.setBottom(errorBox);

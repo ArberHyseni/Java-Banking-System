@@ -80,19 +80,19 @@ public class Language {
 		menu.textProperty().bind(createStringBinding(key, args));
 		return menu;
 	}
-	public static MenuItem getMenuItem(String key, Object...args)
-	{
+
+	public static MenuItem getMenuItem(String key, Object... args) {
 		MenuItem menuItem = new MenuItem();
-		menuItem.textProperty().bind(createStringBinding(key,args));
+		menuItem.textProperty().bind(createStringBinding(key, args));
 		return menuItem;
 	}
-	public static Text getText(String key, Object...args)
-	{
+
+	public static Text getText(String key, Object... args) {
 		Text text = new Text();
-		text.textProperty().bind(createStringBinding(key,args));
+		text.textProperty().bind(createStringBinding(key, args));
 		return text;
 	}
-	
+
 	public static TableColumn getTblColumn(String key, Object... args) {
 		TableColumn<String, Transaction> column = new TableColumn<>();
 		column.textProperty().bind(createStringBinding(key, args));

@@ -51,29 +51,29 @@ public class TransactionModel {
 			return false;
 		}
 	}
-	public static void performTransaction(String amount, double balance, int userid) {
-			Double d = Double.valueOf(amount);
-			try {
-				String query = "UPDATE users set balance = " + (balance - d) + " where userid = " + userid + ";";
-				PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-				
-				String query2 = "INSERT INTO transactions (userid, transactionsum, transactiontype, transactiondate) VALUES (?,?,?,?)";
-				PreparedStatement stmt = DBConnection.getConnection().prepareStatement(query2);
-				stmt.setInt(1, Session.getId());
-				stmt.setDouble(2, Double.valueOf(amount));
-				stmt.setString(3, "Withdraw");
-				stmt.setDate(4, getCurrentDate());			
-				stmt.execute();
-				preparedStatement.execute();
 
-				}
-			catch (SQLException ex) {
-				ex.printStackTrace();
-			}
+	public static void performTransaction(String amount, double balance, int userid) {
+		Double d = Double.valueOf(amount);
+		try {
+			String query = "UPDATE users set balance = " + (balance - d) + " where userid = " + userid + ";";
+			PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+
+			String query2 = "INSERT INTO transactions (userid, transactionsum, transactiontype, transactiondate) VALUES (?,?,?,?)";
+			PreparedStatement stmt = DBConnection.getConnection().prepareStatement(query2);
+			stmt.setInt(1, Session.getId());
+			stmt.setDouble(2, Double.valueOf(amount));
+			stmt.setString(3, "Withdraw");
+			stmt.setDate(4, getCurrentDate());
+			stmt.execute();
+			preparedStatement.execute();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 	
 	public static java.sql.Date getCurrentDate() {
-	    java.util.Date today = new java.util.Date();
-	    return new java.sql.Date(today.getTime());
+		java.util.Date today = new java.util.Date();
+		return new java.sql.Date(today.getTime());
 	}
 }
