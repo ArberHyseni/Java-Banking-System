@@ -11,6 +11,6 @@
 			<accessrule kind="accessible" pattern="javafx/**"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/arber/eclipse-workspace/JavaFXTEST/ConnectorJ/mysql-connector-java-8.0.23.jar"/>
+	<classpathentry kind="lib" path="C:/Users/arber/eclipse-workspace/Bank App/ConnectorJ/mysql-connector-java-8.0.23.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

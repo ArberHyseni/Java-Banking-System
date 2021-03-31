@@ -24,6 +24,8 @@ public class Main extends Application {
 			Platform.exit();
 			System.exit(0);
 		});
+		
+		//main part
 		Index index = new Index();
 		indexScene = new Scene(index.getIndex(), 600, 400);
 		window.setTitle(Language.getLabel("label8").getText());
