@@ -43,7 +43,6 @@ import utils.TransactionModel;
 public class Game extends BorderPane
 {
 	public static Scene logInScene, signInScene, gameScene;
-
 	private Button depositButton = new Button("Enter");
 	private Button withdrawButton = new Button("Enter");
 	private Button showPreviousButton = new Button("Show previous transaction");
@@ -68,6 +67,22 @@ public class Game extends BorderPane
 		HBox depositBox = new HBox(depositLabel, depositTf, depositButton);
 		depositBox.setSpacing(15);
 		menupane.add(depositBox, 0,1);
+		depositButton.setStyle("-fx-text-fill: black; " + "-fx-font-family:'Arial'; "
+				+ "-fx-background-color: linear-gradient(#CACCD1,#F3F4F7); "
+				+ "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
+		withdrawButton.setStyle("-fx-text-fill: black; " + "-fx-font-family:'Arial'; "
+				+ "-fx-background-color: linear-gradient(#CACCD1,#F3F4F7); "
+				+ "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
+		showBalanceButton.setStyle("-fx-text-fill: black; " + "-fx-font-family:'Arial'; "
+				+ "-fx-background-color: linear-gradient(#CACCD1,#F3F4F7); "
+				+ "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
+		accinformationButton.setStyle("-fx-text-fill: black; " + "-fx-font-family:'Arial'; "
+				+ "-fx-background-color: linear-gradient(#CACCD1,#F3F4F7); "
+				+ "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
+		showPreviousButton.setStyle("-fx-text-fill: black; " + "-fx-font-family:'Arial'; "
+				+ "-fx-background-color: linear-gradient(#CACCD1,#F3F4F7); "
+				+ "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
+		
 		GridPane.setMargin(depositBox, new Insets(10,0,0,20));
 		depositButton.setOnAction(e -> {
 			String amount = depositTf.getText().toString();
@@ -117,11 +132,20 @@ public class Game extends BorderPane
 		menupane.add(withdrawBox, 0,3);
 		GridPane.setMargin(withdrawBox, new Insets(10,0,0,20));
 		
-		HBox buttonBox = new HBox(showPreviousButton,showBalanceButton,accinformationButton);
+		HBox buttonBox = new HBox(showPreviousButton,showBalanceButton);
 		buttonBox.setSpacing(15);
 		buttonBox.setAlignment(Pos.CENTER);
-		menupane.add(buttonBox,0,4);
-		
+		menupane.add(buttonBox,0,5);
+		GridPane.setMargin(buttonBox, new Insets(0,0,0, 30));
+		showBalanceButton.setOnAction(e -> {
+			String balance = Double.toString(Session.getBalance());
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Withdraw successful");
+			alert.setHeaderText(null);
+			alert.setContentText(balance);
+			alert.showAndWait();
+		});
+		showPreviousButton.setOnAction(e -> new Transactions().getStage());
 		HBox errorBox = new HBox(errorLabel);
 		errorBox.setAlignment(Pos.CENTER);
 		

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import app.Scores;
+import app.Transaction;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
@@ -94,7 +94,7 @@ public class Language {
 	}
 	
 	public static TableColumn getTblColumn(String key, Object... args) {
-		TableColumn<String, Scores> column = new TableColumn<>();
+		TableColumn<String, Transaction> column = new TableColumn<>();
 		column.textProperty().bind(createStringBinding(key, args));
 		return column;
 	}
