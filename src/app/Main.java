@@ -24,7 +24,7 @@ public class Main extends Application {
 			System.exit(0);
 		});
 		Index index = new Index();
-		indexScene = new Scene(index.getIndex(), 400, 400);
+		indexScene = new Scene(index.getIndex(), 600, 400);
 		window.setTitle(Language.getLabel("label8").getText());
 		window.setScene(indexScene);
 		window.show();

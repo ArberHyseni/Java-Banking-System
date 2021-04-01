@@ -55,18 +55,21 @@ public class Game extends BorderPane
 	public Pane mainPane() {
 		BorderPane gp = new BorderPane();
 		GridPane menupane = new GridPane();
+		StackPane sp = new StackPane();
 		Label menuLabel = new Label("BKK Homepage");
 		menuLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 		HBox tophb = new HBox(menuLabel);
 		tophb.setAlignment(Pos.CENTER);
-		
+
 		Label depositLabel = new Label("Deposit Amount:");
 		depositLabel.setMinWidth(USE_PREF_SIZE);
 		depositButton.setMinWidth(USE_PREF_SIZE);
 		depositLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
 		HBox depositBox = new HBox(depositLabel, depositTf, depositButton);
 		depositBox.setSpacing(15);
-		menupane.add(depositBox, 0,1);
+		depositBox.setMargin(depositButton, new Insets(0,0,0,-1));
+		depositBox.setMargin(depositTf, new Insets(0,0,0,16));
+		menupane.add(depositBox, 0, 1);
 		depositButton.setStyle("-fx-text-fill: black; " + "-fx-font-family:'Arial'; "
 				+ "-fx-background-color: linear-gradient(#CACCD1,#F3F4F7); "
 				+ "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
@@ -82,22 +85,21 @@ public class Game extends BorderPane
 		showPreviousButton.setStyle("-fx-text-fill: black; " + "-fx-font-family:'Arial'; "
 				+ "-fx-background-color: linear-gradient(#CACCD1,#F3F4F7); "
 				+ "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
-		
-		GridPane.setMargin(depositBox, new Insets(10,0,0,20));
+
+		GridPane.setMargin(depositBox, new Insets(10, 0, 0, 20));
 		depositButton.setOnAction(e -> {
 			String amount = depositTf.getText().toString();
-			if(TransactionModel.checkDepositInfo(amount) && Validator.textFieldNotEmpty(depositTf)) {
-				
+			if (TransactionModel.checkDepositInfo(amount) && Validator.textFieldNotEmpty(depositTf)) {
+
 				TransactionModel.deposit(Session.getId(), Double.parseDouble(amount));
-				
+
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Deposit successful");
 				alert.setHeaderText("Deposit Successful");
 				alert.setContentText(null);
 				alert.showAndWait();
-			}
-			else {
-				Alert alert = new Alert(AlertType.INFORMATION);
+			} else {
+				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Deposit unsuccessful");
 				alert.setHeaderText("Not double");
 				alert.setContentText(null);
@@ -112,31 +114,33 @@ public class Game extends BorderPane
 		withdrawBox.setSpacing(15);
 		withdrawButton.setOnAction(e-> {
 			String withdrawAmount = withdrawTf.getText().toString();
-			if((TransactionModel.getAccountBalance(Session.getId()) > Double.parseDouble(withdrawAmount)) && Validator.textFieldNotEmpty(withdrawTf)) {
+			if ((TransactionModel.getAccountBalance(Session.getId()) > Double.parseDouble(withdrawAmount))
+					&& Validator.textFieldNotEmpty(withdrawTf)) {
 				TransactionModel.performTransaction(withdrawAmount, Session.getBalance(), Session.getId());
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Withdraw successful");
 				alert.setHeaderText("Withdraw Successful");
 				alert.setContentText(null);
 				alert.showAndWait();
-			}
-			else {
+			} else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("E");
 				alert.setHeaderText("Withdraw unsuccessful");
 				alert.setContentText(null);
 				alert.showAndWait();
 			}
-			
 		});
 		menupane.add(withdrawBox, 0,3);
 		GridPane.setMargin(withdrawBox, new Insets(10,0,0,20));
 		
-		HBox buttonBox = new HBox(showPreviousButton,showBalanceButton);
-		buttonBox.setSpacing(15);
-		buttonBox.setAlignment(Pos.CENTER);
-		menupane.add(buttonBox,0,5);
-		GridPane.setMargin(buttonBox, new Insets(0,0,0, 30));
+		HBox buttonBox = new HBox(20);
+		buttonBox.getChildren().addAll(showPreviousButton, showBalanceButton);
+		sp.setAlignment(Pos.CENTER);
+		sp.getChildren().addAll(buttonBox);
+		StackPane.setAlignment(buttonBox, Pos.CENTER);
+		StackPane.setMargin(buttonBox, new Insets(10,0,0, 150));
+		menupane.add(sp, 0, 5);
+		
 		showBalanceButton.setOnAction(e -> {
 			String balance = Double.toString(Session.getBalance());
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -155,6 +159,7 @@ public class Game extends BorderPane
 		gp.setTop(tophb);
 		gp.setCenter(menupane);
 		gp.setBottom(errorBox);
+		gp.setStyle("-fx-background-color: #D5D4D4");
 		return gp;
 	}
 }

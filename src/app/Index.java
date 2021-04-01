@@ -85,6 +85,7 @@ public class Index extends VBox {
 		welcome.setPadding(new Insets(3, 3, 3, 3));
 		welcome.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, 20));
 		pane.getChildren().addAll(welcome, buttonPane, buttonPane1, languageButtons);
+		pane.setStyle("-fx-background-color: #D5D4D4");
 		return pane;
 	}
 }
