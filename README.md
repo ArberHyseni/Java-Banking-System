@@ -1,6 +1,6 @@
 # Java-Banking-System
 
-This is the Java Banking System developed by me using Java and JavaFX, it's developed using safe techniques and based on OOP concepts. 
+This is the Java Banking System developed only by me, using Java and JavaFX, it's developed using safe techniques and based on OOP concepts. 
 
 Here you can see the main page of the so-called BKK App.
 ![main](https://user-images.githubusercontent.com/57264395/113341224-3829b180-932d-11eb-9465-c546392c5611.JPG)
