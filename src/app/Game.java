@@ -146,7 +146,7 @@ public class Game extends BorderPane
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Withdraw successful");
 			alert.setHeaderText(null);
-			alert.setContentText(balance);
+			alert.setContentText("Your balance is: " + balance);
 			alert.showAndWait();
 		});
 		showPreviousButton.setOnAction(e -> new Transactions().getStage());
