@@ -43,26 +43,30 @@ import utils.TransactionModel;
 public class Game extends BorderPane
 {
 	public static Scene logInScene, signInScene, gameScene;
-	private Button depositButton = new Button("Enter");
-	private Button withdrawButton = new Button("Enter");
-	private Button showPreviousButton = new Button("Show previous transaction");
-	private Button showBalanceButton = new Button("Show balance");
-	private Button accinformationButton = new Button("Show acc information");
-	public static TextField depositTf = new TextField();
-	public static TextField withdrawTf = new TextField();
-	public static Label errorLabel = new Label();
+	private Button depositButton;
+	private Button withdrawButton;
+	private Button showPreviousButton;
+	private Button showBalanceButton;
+//	private Button accinformationButton = new Button("Show acc information");
+	private static TextField depositTf = new TextField();
+	private static TextField withdrawTf = new TextField();
+	private static Label errorLabel = new Label();
+	private Label menuLabel;
+	private Label depositLabel;
+	private Label withdraw;
 
 	public Pane mainPane() {
 		BorderPane gp = new BorderPane();
 		GridPane menupane = new GridPane();
 		StackPane sp = new StackPane();
-		Label menuLabel = new Label("BKK Homepage");
+		menuLabel = Language.getLabel("label8");
 		menuLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 		HBox tophb = new HBox(menuLabel);
 		tophb.setAlignment(Pos.CENTER);
 
-		Label depositLabel = new Label("Deposit Amount:");
+		depositLabel = Language.getLabel("label19");
 		depositLabel.setMinWidth(USE_PREF_SIZE);
+		depositButton = Language.getButton("Button1");
 		depositButton.setMinWidth(USE_PREF_SIZE);
 		depositLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
 		HBox depositBox = new HBox(depositLabel, depositTf, depositButton);
@@ -70,6 +74,9 @@ public class Game extends BorderPane
 		depositBox.setMargin(depositButton, new Insets(0,0,0,-1));
 		depositBox.setMargin(depositTf, new Insets(0,0,0,16));
 		menupane.add(depositBox, 0, 1);
+		withdrawButton = Language.getButton("Button1");
+		showPreviousButton = Language.getButton("Button7");
+		showBalanceButton = Language.getButton("Button8");
 		depositButton.setStyle("-fx-text-fill: black; " + "-fx-font-family:'Arial'; "
 				+ "-fx-background-color: linear-gradient(#CACCD1,#F3F4F7); "
 				+ "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
@@ -79,9 +86,9 @@ public class Game extends BorderPane
 		showBalanceButton.setStyle("-fx-text-fill: black; " + "-fx-font-family:'Arial'; "
 				+ "-fx-background-color: linear-gradient(#CACCD1,#F3F4F7); "
 				+ "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
-		accinformationButton.setStyle("-fx-text-fill: black; " + "-fx-font-family:'Arial'; "
-				+ "-fx-background-color: linear-gradient(#CACCD1,#F3F4F7); "
-				+ "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
+//		accinformationButton.setStyle("-fx-text-fill: black; " + "-fx-font-family:'Arial'; "
+//				+ "-fx-background-color: linear-gradient(#CACCD1,#F3F4F7); "
+//				+ "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
 		showPreviousButton.setStyle("-fx-text-fill: black; " + "-fx-font-family:'Arial'; "
 				+ "-fx-background-color: linear-gradient(#CACCD1,#F3F4F7); "
 				+ "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );");
@@ -106,7 +113,7 @@ public class Game extends BorderPane
 			}
 		});
 		
-		Label withdraw = new Label("Withdraw Amount:");
+		withdraw = Language.getLabel("label20");
 		withdraw.setMinWidth(USE_PREF_SIZE);
 		withdrawButton.setMinWidth(USE_PREF_SIZE);
 		withdraw.setFont(Font.font("Verdana", FontWeight.BOLD, 13));

@@ -22,7 +22,7 @@ The withdraw interface:
 
 ![withdraw](https://user-images.githubusercontent.com/57264395/113341385-64453280-932d-11eb-936c-8aafc7a69d08.JPG)
 
-Also an example of the observablearraylist in action when pressing show transactions
+Also an example of the observablearraylist in action when pressing the show transactions button
 
 
 ![showtransaction](https://user-images.githubusercontent.com/57264395/113341470-7c1cb680-932d-11eb-87d8-203ac872703a.JPG)
