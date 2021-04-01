@@ -113,7 +113,7 @@ public class Login extends GridPane {
 			{
 				if (BCrypt.checkpw(passwordTxt.getText(), resultSet.getString("hash"))) {
 					Session.setSession(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getDouble(6));
-					Game game = new Game();
+					Bank game = new Bank();
 					gameScene = new Scene(game.mainPane(), 600, 400);
 					(Main.window).setScene(gameScene);
 					(Main.window).setTitle("Home Screen");

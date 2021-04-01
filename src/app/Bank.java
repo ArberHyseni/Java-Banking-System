@@ -40,7 +40,7 @@ import utils.Session;
 import utils.TransactionModel;
 
 
-public class Game extends BorderPane
+public class Bank extends BorderPane
 {
 	public static Scene logInScene, signInScene, gameScene;
 	private Button depositButton;
